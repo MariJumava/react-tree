@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import styled from 'styled-components';
+import { SearchBar } from './components/SearchBar';
+import { TreeMenu } from './components/TreeMenu';
+import data from './data.json';
+import { colors } from './styles.ts/colors';
 
-function App() {
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+`;
+const StyledTitle = styled.h1`
+  margin-bottom: 2rem;
+  text-align: center;
+`;
+const StyledTree = styled.div`
+  width: 90%;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid ${colors.grey};
+  border-radius: 8px;
+`;
+export const App = () => {
+  const [searchData, setSearchData] = useState<string>('');
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setSearchData(value);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledContainer>
+      <StyledTitle>Коды ОКВЭД </StyledTitle>
+      <SearchBar
+        value={searchData}
+        handleChange={handleChange}
+        setSearchData={setSearchData}
+      />
+      <StyledTree>
+        <TreeMenu searchData={searchData} data={data} />
+      </StyledTree>
+    </StyledContainer>
   );
-}
-
-export default App;
+};
