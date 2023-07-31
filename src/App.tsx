@@ -5,22 +5,6 @@ import { TreeMenu } from './components/TreeMenu';
 import data from './data.json';
 import { colors } from './styles.ts/colors';
 
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 3rem;
-`;
-const StyledTitle = styled.h1`
-  margin-bottom: 2rem;
-  text-align: center;
-`;
-const StyledTree = styled.div`
-  width: 90%;
-  margin: auto;
-  padding: 1rem;
-  border: 1px solid ${colors.grey};
-  border-radius: 8px;
-`;
 export const App = () => {
   const [searchData, setSearchData] = useState<string>('');
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,3 +25,19 @@ export const App = () => {
     </StyledContainer>
   );
 };
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+`;
+const StyledTitle = styled.h1`
+  margin-bottom: 2rem;
+  text-align: center;
+`;
+const StyledTree = styled.div`
+  width: 90%;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid ${colors.grey};
+  border-radius: 8px;
+`;
